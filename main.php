@@ -7,7 +7,12 @@ exec(escapeshellcmd($cmd), $output, $status);
 if ($status) echo "Exec ommand failed";
 else {
     echo "<pre>";
-    foreach ($output as $line) echo htmlspecialchars("$line ---\n");
+    foreach ($output as $line) {
+        echo gettype($line);
+        $parts = preg_split('/\s+/', $line);
+        print_r($parts);
+        echo htmlspecialchars("$line ---\n");
+    };
 }
 
 $date = "06/01/1996";
