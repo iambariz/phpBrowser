@@ -1,3 +1,17 @@
+<?php
+$cmd = "dir";
+// $cmd = "ls"; Linux, Mac, Unix
+
+exec(escapeshellcmd($cmd), $output, $status);
+
+if ($status) echo "Exec ommand failed";
+else {
+    echo "<pre>";
+    foreach ($output as $line) echo htmlspecialchars("$line\n");
+}
+?>
+<html>
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
