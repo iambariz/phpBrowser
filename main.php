@@ -4,23 +4,60 @@ $cmd = "dir main /a-d	";
 // $cmd = "ls"; Linux, Mac, Unix
 
 exec(escapeshellcmd($cmd), $output, $status);
-if ($status) echo "Exec ommand failed";
+if ($status) echo "Exec command failed";
 else {
     echo "<pre>";
     foreach ($output as $line) {
-        echo gettype($line);
         $parts = preg_split('/\s+/', $line);
-        print_r($parts);
-        echo htmlspecialchars("$line ---\n");
+        if (preg_match("/^[0-9]{1,2}\/[0-9]{1,2}\/[0-9]{4}$/", $parts[0])) {
+            echo htmlspecialchars("$line\n");
+        }
     };
 }
 
-$date = "06/01/1996";
-if (preg_match("/^[0-9]{1,2}\/[0-9]{1,2}\/[0-9]{4}$/", $date)) {
-    echo "succes";
-} else {
-    echo "fail";
+function insertItem($arr)
+{
+
+    echo
+    '<script type="text/JavaScript"> 
+
+    let arr = $arr;
+
+    const main = document.querySelector(".main");
+    
+    arr.forEach((element) => {
+        main.innerHTML += `
+        <tr>
+            <td>${element[3]}</td>
+            <td>${element[2]}</td>
+            <td>${element[0]}</th>
+        </tr>
+    `;
+    });
+    
+    </script>';
 }
+
+
+
+
+// (
+//     [0] => 19/11/2021
+//     [1] => 13:48
+//     [2] => 0
+//     [3] => testfile
+//     [4] => -
+//     [5] => Copy
+//     [6] => (3).txt
+// )
+
+
+// $date = "06/01/1996";
+// if (preg_match("/^[0-9]{1,2}\/[0-9]{1,2}\/[0-9]{4}$/", $date)) {
+//     echo "succes";
+// } else {
+//     echo "fail";
+// }
 
 
 ?>
