@@ -15,30 +15,28 @@ else {
     };
 }
 
+$test = "asd";
+
 function insertItem($arr)
 {
 
     echo
     '<script type="text/JavaScript"> 
+    var js_variable = echo json_encode($php_variable); 
+    console.log(js_variable);
 
     let arr = $arr;
 
     const main = document.querySelector(".main");
     
-    arr.forEach((element) => {
-        main.innerHTML += `
-        <tr>
-            <td>${element[3]}</td>
-            <td>${element[2]}</td>
-            <td>${element[0]}</th>
-        </tr>
-    `;
-    });
+
     
     </script>';
 }
 
 
+
+insertItem([]);
 
 
 // (
@@ -95,5 +93,7 @@ function insertItem($arr)
     </div>
 
 </body>
+
+
 
 </html>
