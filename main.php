@@ -1,14 +1,15 @@
 <?php
-$cmd = "dir";
+$cmd = "dir main";
 // $cmd = "ls"; Linux, Mac, Unix
 
 exec(escapeshellcmd($cmd), $output, $status);
-
 if ($status) echo "Exec ommand failed";
 else {
     echo "<pre>";
     foreach ($output as $line) echo htmlspecialchars("$line\n");
 }
+
+
 ?>
 <html>
 
