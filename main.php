@@ -1,12 +1,20 @@
 <?php
-$cmd = "dir main";
+$cmd = "dir main /a-d	";
+//      DIR [pathname(s)] [display_format] [file_attributes] [sorted] [time] [options]
 // $cmd = "ls"; Linux, Mac, Unix
 
 exec(escapeshellcmd($cmd), $output, $status);
 if ($status) echo "Exec ommand failed";
 else {
     echo "<pre>";
-    foreach ($output as $line) echo htmlspecialchars("$line\n");
+    foreach ($output as $line) echo htmlspecialchars("$line ---\n");
+}
+
+$date = "06/01/1996";
+if (preg_match("/^[0-9]{1,2}\/[0-9]{1,2}\/[0-9]{4}$/", $date)) {
+    echo "succes";
+} else {
+    echo "fail";
 }
 
 
