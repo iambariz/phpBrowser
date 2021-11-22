@@ -3,25 +3,29 @@ $cmd = "dir main /a-d	";
 //      DIR [pathname(s)] [display_format] [file_attributes] [sorted] [time] [options]
 // $cmd = "ls"; Linux, Mac, Unix
 
-$files = [];
+$files = array();
+$path = "none";
 
 
 exec(escapeshellcmd($cmd), $output, $status);
 if ($status) echo "Exec command failed";
 else {
+    $count = 0;
     echo "<pre>";
     foreach ($output as $line) {
         $parts = preg_split('/\s+/', $line);
+        if ($count == 3) {
+            $path = $line;
+        }
         if (preg_match("/^[0-9]{1,2}\/[0-9]{1,2}\/[0-9]{4}$/", $parts[0])) {
-            echo htmlspecialchars("$line\n");
+            // echo htmlspecialchars("$line\n");
             array_push($files, $line);
         }
+        $count++;
     };
 }
 
 
-
-$value = "test";
 
 
 // function insertItem($arr)
@@ -93,29 +97,29 @@ $value = "test";
             <tr>
                 <th>File Name</th>
                 <th>Date Modified</th>
-                <th>Type</th>
+                <th>Size</th>
             </tr>
         </table>
 
     </div>
-    <div id="dom-target" style="display: none;">
+    <!-- <div id="dom-target" style="display: none;">
         <?php
         $output = "42"; // Again, do some operation, get the output.
         echo htmlspecialchars($output); /* You have to escape because the result
                                            will not be valid HTML otherwise. */
         ?>
-    </div>
+    </div> -->
 
     <div class="Test"></div>
 </body>
 <script type="text/javascript">
-    var myServerData = <?= json_encode($files) ?>;
-
-    console.log(myServerData);
+    let files = <?= json_encode($files) ?>;
+    let directory = <?= json_encode($path) ?>;
 
     let test = document.querySelector('.test');
 
-    test.innerHTML = myServerData;
+    test.innerHTML = files;
+    test.innerHTML += directory;
 
     // var cookies = document.cookie.split(";").
     // map(function(el) {
