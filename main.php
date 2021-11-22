@@ -11,7 +11,6 @@ exec(escapeshellcmd($cmd), $output, $status);
 if ($status) echo "Exec command failed";
 else {
     $count = 0;
-    echo "<pre>";
     foreach ($output as $line) {
         $parts = preg_split('/\s+/', $line);
         if ($count == 3) {
@@ -79,6 +78,12 @@ else {
     <title>Test</title>
 
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
+        * {
+            font-family: 'Roboto', sans-serif;
+        }
+
         th:nth-of-type(2) {
             border-width: 0px 1px 0px 1px;
             border-color: #000;
@@ -109,6 +114,12 @@ else {
                 <th>Date Modified</th>
 
             </tr>
+            <tr>
+
+                <td colspan="3">...</td>
+
+
+            </tr>
         </table>
 
     </div>
@@ -120,15 +131,10 @@ else {
     let files = <?= json_encode($files) ?>;
     let directory = <?= json_encode($path) ?>;
 
-
-    console.log(typeof(files));
-
-    let test = document.querySelector('.test');
     let output = document.querySelector('.table');
     let path = document.querySelector('.path');
     let main = document.querySelector('.main');
 
-    test.innerHTML = files;
     path.innerHTML = directory;
 
 
