@@ -95,6 +95,11 @@ else {
     <div class="main">
         <table>
             <tr>
+
+                <th class="path" colspan="3">Path</th>
+
+            </tr>
+            <tr>
                 <th>File Name</th>
                 <th>Date Modified</th>
                 <th>Size</th>
@@ -117,9 +122,10 @@ else {
     let directory = <?= json_encode($path) ?>;
 
     let test = document.querySelector('.test');
+    let path = document.querySelector('.path');
 
     test.innerHTML = files;
-    test.innerHTML += directory;
+    path.innerHTML = directory;
 
     // var cookies = document.cookie.split(";").
     // map(function(el) {
