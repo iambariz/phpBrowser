@@ -32,8 +32,8 @@ else {
 // {
 
 //     echo
-//     '<script type="text/JavaScript"> 
-//     var js_variable = echo json_encode($php_variable); 
+//     '<script type="text/JavaScript">
+//     var js_variable = echo json_encode($php_variable);
 //     console.log(js_variable);
 
 //     let arr = $arr;
@@ -88,12 +88,16 @@ else {
         th {
             width: 10rem;
         }
+
+        td {
+            text-align: center;
+        }
     </style>
 </head>
 
 <body>
     <div class="main">
-        <table>
+        <table class="table">
             <tr>
 
                 <th class="path" colspan="3">Path</th>
@@ -101,31 +105,59 @@ else {
             </tr>
             <tr>
                 <th>File Name</th>
-                <th>Date Modified</th>
                 <th>Size</th>
+                <th>Date Modified</th>
+
             </tr>
         </table>
 
     </div>
-    <!-- <div id="dom-target" style="display: none;">
-        <?php
-        $output = "42"; // Again, do some operation, get the output.
-        echo htmlspecialchars($output); /* You have to escape because the result
-                                           will not be valid HTML otherwise. */
-        ?>
-    </div> -->
 
     <div class="Test"></div>
+    <div class="output"></div>
 </body>
 <script type="text/javascript">
     let files = <?= json_encode($files) ?>;
     let directory = <?= json_encode($path) ?>;
 
+
+    console.log(typeof(files));
+
     let test = document.querySelector('.test');
+    let output = document.querySelector('.table');
     let path = document.querySelector('.path');
+    let main = document.querySelector('.main');
 
     test.innerHTML = files;
     path.innerHTML = directory;
+
+
+
+    let outputData = files.forEach(element => {
+        // console.log(element)
+        const cut = element.split(/[ ,]+/);
+        // console.log(cut)
+        // Array(4)["19/11/2021", "13:48", "0", "testfile.txt"]​
+        // 0: "19/11/2021"​
+        // 1: "13:48"​
+        // 2: "0"​
+        // 3: "testfile.txt"​
+        item = `
+            <tr>
+            <td>${cut[3]}</td>
+                <td>${cut[2]} byte</td>
+                <td>${cut[0]} ${cut[1]}</td>
+
+            </tr>
+        `;
+        console.log(item);
+        output.innerHTML += item;
+    });
+
+
+
+
+    // console.log(display);
 
     // var cookies = document.cookie.split(";").
     // map(function(el) {
