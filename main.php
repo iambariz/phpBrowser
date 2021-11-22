@@ -3,6 +3,9 @@ $cmd = "dir main /a-d	";
 //      DIR [pathname(s)] [display_format] [file_attributes] [sorted] [time] [options]
 // $cmd = "ls"; Linux, Mac, Unix
 
+$files = [];
+
+
 exec(escapeshellcmd($cmd), $output, $status);
 if ($status) echo "Exec command failed";
 else {
@@ -11,11 +14,15 @@ else {
         $parts = preg_split('/\s+/', $line);
         if (preg_match("/^[0-9]{1,2}\/[0-9]{1,2}\/[0-9]{4}$/", $parts[0])) {
             echo htmlspecialchars("$line\n");
+            array_push($files, $line);
         }
     };
 }
 
-$test = "asd";
+
+
+$value = "test";
+
 
 // function insertItem($arr)
 // {
@@ -99,11 +106,30 @@ $test = "asd";
         ?>
     </div>
 
-
+    <div class="Test"></div>
 </body>
 <script type="text/javascript">
-    var div = document.getElementById("dom-target");
-    var myData = div.textContent;
+    var myServerData = <?= json_encode($files) ?>;
+
+    console.log(myServerData);
+
+    let test = document.querySelector('.test');
+
+    test.innerHTML = myServerData;
+
+    // var cookies = document.cookie.split(";").
+    // map(function(el) {
+    //     return el.split("=");
+    // }).
+    // reduce(function(prev, cur) {
+    //     prev[cur[0]] = cur[1];
+    //     return prev
+    // }, {});
+    // alert(cookies["TestCookie"]); // Value set with PHP.
+
+
+    // var div = document.getElementById("dom-target");
+    // var myData = div.textContent;
 </script>
 
 
