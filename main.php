@@ -17,26 +17,26 @@ else {
 
 $test = "asd";
 
-function insertItem($arr)
-{
+// function insertItem($arr)
+// {
 
-    echo
-    '<script type="text/JavaScript"> 
-    var js_variable = echo json_encode($php_variable); 
-    console.log(js_variable);
+//     echo
+//     '<script type="text/JavaScript"> 
+//     var js_variable = echo json_encode($php_variable); 
+//     console.log(js_variable);
 
-    let arr = $arr;
+//     let arr = $arr;
 
-    const main = document.querySelector(".main");
-    
-
-    
-    </script>';
-}
+//     const main = document.querySelector(".main");
 
 
 
-insertItem([]);
+//     </script>';
+// }
+
+
+
+// insertItem([]);
 
 
 // (
@@ -91,9 +91,20 @@ insertItem([]);
         </table>
 
     </div>
+    <div id="dom-target" style="display: none;">
+        <?php
+        $output = "42"; // Again, do some operation, get the output.
+        echo htmlspecialchars($output); /* You have to escape because the result
+                                           will not be valid HTML otherwise. */
+        ?>
+    </div>
+
 
 </body>
-
+<script type="text/javascript">
+    var div = document.getElementById("dom-target");
+    var myData = div.textContent;
+</script>
 
 
 </html>
