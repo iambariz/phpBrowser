@@ -253,6 +253,15 @@ else {
 
     rowItems.forEach(item => {
         item.addEventListener('click', function() {
+            const item = document.querySelector('.active');
+            // console.log(item == this);
+            if (item) {
+                item.classList.remove('active');
+            }
+
+        })
+        // dblclick
+        item.addEventListener('click', function() {
             if (this.classList.contains('active')) {
                 console.log("asd")
             } else {
