@@ -139,7 +139,12 @@ else {
             font-family: 'Roboto', sans-serif;
         }
 
-        th:nth-of-type(2) {
+        th:nth-of-type(1) {
+            width: 2rem;
+        }
+
+
+        th:nth-of-type(3) {
             border-width: 0px 1px 0px 1px;
             border-color: #000;
             border-style: solid;
@@ -168,14 +173,16 @@ else {
 
             </tr>
             <tr>
+                <th></th>
                 <th>File Name</th>
                 <th>Size</th>
                 <th>Date Modified</th>
-
             </tr>
             <tr>
 
-                <td colspan="3"><span class="material-icons">&#xE87C;</span></td>
+                <td colspan="4"><span class="material-icons">
+                        more_horiz
+                    </span></td>
 
 
             </tr>
@@ -209,6 +216,7 @@ else {
         // 3: "testfile.txt"​
         item = `
             <tr>
+            <td><span class="material-icons">description</span></td>
             <td>${cut[3]}</td>
                 <td>${cut[2]} byte</td>
                 <td>${cut[0]} ${cut[1]}</td>
