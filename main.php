@@ -222,7 +222,7 @@ else {
         // 2: "0"​
         // 3: "testfile.txt"​
         item = `
-            <tr class="row-item">
+            <tr class="row-item file">
             <td><span class="material-icons">description</span></td>
             <td>${cut[3]}</td>
                 <td>${cut[2]} byte</td>
@@ -235,7 +235,7 @@ else {
     });
     let outputDir = dirs.forEach(element => {
         item = `
-            <tr class="row-item">
+            <tr class="row-item dir">
             <td ><span class="material-icons">
             folder
             </span></td>
@@ -252,13 +252,16 @@ else {
     console.log(rowItems)
 
     rowItems.forEach(item => {
+        item.addEventListener('dblclick', function() {
+            console.log("doubleClick!");
+        })
+
         item.addEventListener('click', function() {
             const item = document.querySelector('.active');
             // console.log(item == this);
             if (item) {
                 item.classList.remove('active');
             }
-
         })
         // dblclick
         item.addEventListener('click', function() {
@@ -269,6 +272,7 @@ else {
                 console.log(this.classList)
             }
         })
+
     });
 
 
