@@ -32,10 +32,10 @@ else {
     foreach ($output2 as $line) {
         array_push($dirs, $line);
     };
-    foreach ($dirs as $item) {
-        echo "<pre>";
-        echo htmlspecialchars("$item\n");
-    };
+    // foreach ($dirs as $item) {
+    //     echo "<pre>";
+    //     echo htmlspecialchars("$item\n");
+    // };
 }
 
 
@@ -196,6 +196,7 @@ else {
 <script type="text/javascript">
     let files = <?= json_encode($files) ?>;
     let directory = <?= json_encode($path) ?>;
+    let dirs = <?= json_encode($dirs) ?>;
 
     let output = document.querySelector('.table');
     let path = document.querySelector('.path');
@@ -220,6 +221,19 @@ else {
             <td>${cut[3]}</td>
                 <td>${cut[2]} byte</td>
                 <td>${cut[0]} ${cut[1]}</td>
+
+            </tr>
+        `;
+        console.log(item);
+        output.innerHTML += item;
+    });
+    let outputDir = dirs.forEach(element => {
+        item = `
+            <tr>
+            <td><span class="material-icons">
+folder
+</span></td>
+            <td>${element}</td>
 
             </tr>
         `;
