@@ -5,7 +5,7 @@ $cmd = "dir main /a-d	";
 
 $files = array();
 $path = "none";
-
+$dirs = array();
 
 exec(escapeshellcmd($cmd), $output, $status);
 if ($status) echo "Exec command failed";
@@ -21,6 +21,20 @@ else {
             array_push($files, $line);
         }
         $count++;
+    };
+}
+
+$cmd2 = "dir main /a:d /b";
+
+exec(escapeshellcmd($cmd2), $output2, $status2);
+if ($status2) echo "Exec command failed";
+else {
+    foreach ($output2 as $line) {
+        array_push($dirs, $line);
+    };
+    foreach ($dirs as $item) {
+        echo "<pre>";
+        echo htmlspecialchars("$item\n");
     };
 }
 
@@ -76,9 +90,50 @@ else {
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Test</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
 
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
+        @font-face {
+            font-family: 'Material Icons';
+            font-style: normal;
+            font-weight: 400;
+            src: url(https://example.com/MaterialIcons-Regular.eot);
+            /* For IE6-8 */
+            src: local('Material Icons'),
+                local('MaterialIcons-Regular'),
+                url(https://example.com/MaterialIcons-Regular.woff2) format('woff2'),
+                url(https://example.com/MaterialIcons-Regular.woff) format('woff'),
+                url(https://example.com/MaterialIcons-Regular.ttf) format('truetype');
+        }
+
+        .material-icons {
+            font-family: 'Material Icons';
+            font-weight: normal;
+            font-style: normal;
+            font-size: 24px;
+            /* Preferred icon size */
+            display: inline-block;
+            line-height: 1;
+            text-transform: none;
+            letter-spacing: normal;
+            word-wrap: normal;
+            white-space: nowrap;
+            direction: ltr;
+
+            /* Support for all WebKit browsers. */
+            -webkit-font-smoothing: antialiased;
+            /* Support for Safari and Chrome. */
+            text-rendering: optimizeLegibility;
+
+            /* Support for Firefox. */
+            -moz-osx-font-smoothing: grayscale;
+
+            /* Support for IE. */
+            font-feature-settings: 'liga';
+        }
 
         * {
             font-family: 'Roboto', sans-serif;
@@ -92,10 +147,14 @@ else {
 
         th {
             width: 10rem;
+            cursor: pointer;
+
         }
 
         td {
             text-align: center;
+            cursor: pointer;
+
         }
     </style>
 </head>
@@ -116,7 +175,7 @@ else {
             </tr>
             <tr>
 
-                <td colspan="3">...</td>
+                <td colspan="3"><span class="material-icons">&#xE87C;</span></td>
 
 
             </tr>
