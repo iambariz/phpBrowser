@@ -161,6 +161,11 @@ else {
             cursor: pointer;
 
         }
+
+        .row-item.active {
+            background-color: #000;
+            color: #fff;
+        }
     </style>
 </head>
 
@@ -196,6 +201,7 @@ else {
 <script type="text/javascript">
     let files = <?= json_encode($files) ?>;
     let directory = <?= json_encode($path) ?>;
+
     let dirs = <?= json_encode($dirs) ?>;
 
     let output = document.querySelector('.table');
@@ -216,7 +222,7 @@ else {
         // 2: "0"​
         // 3: "testfile.txt"​
         item = `
-            <tr>
+            <tr class="row-item">
             <td><span class="material-icons">description</span></td>
             <td>${cut[3]}</td>
                 <td>${cut[2]} byte</td>
@@ -224,16 +230,16 @@ else {
 
             </tr>
         `;
-        console.log(item);
+        // console.log(item);
         output.innerHTML += item;
     });
     let outputDir = dirs.forEach(element => {
         item = `
-            <tr>
-            <td><span class="material-icons">
-folder
-</span></td>
-            <td>${element}</td>
+            <tr class="row-item">
+            <td ><span class="material-icons">
+            folder
+            </span></td>
+            <td colspan="4">${element}</td>
 
             </tr>
         `;
@@ -241,7 +247,20 @@ folder
         output.innerHTML += item;
     });
 
+    const rowItems = document.querySelectorAll('.row-item');
 
+    console.log(rowItems)
+
+    rowItems.forEach(item => {
+        item.addEventListener('click', function() {
+            if (this.classList.contains('active')) {
+                console.log("asd")
+            } else {
+                this.classList.add('active');
+                console.log(this.classList)
+            }
+        })
+    });
 
 
     // console.log(display);
