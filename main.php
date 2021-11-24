@@ -1,7 +1,7 @@
 <?php
 print_r($_POST);
 
-
+$lastDir;
 $cmd = "dir main /a-d	";
 //      DIR [pathname(s)] [display_format] [file_attributes] [sorted] [time] [options]
 // $cmd = "ls"; Linux, Mac, Unix
@@ -242,7 +242,7 @@ else {
         // 2: "0"​
         // 3: "testfile.txt"​
         item = `
-            <tr class="row-item file">
+            <tr class="row-item file" data-value="${cut[3]}">
             <td><span class="material-icons">description</span></td>
             <td>${cut[3]}</td>
                 <td>${cut[2]} byte</td>
@@ -255,7 +255,7 @@ else {
     });
     let outputDir = dirs.forEach(element => {
         item = `
-            <tr class="row-item dir">
+            <tr class="row-item dir" data-value="${element}">
             <td ><span class="material-icons">
             folder
             </span></td>
@@ -274,6 +274,7 @@ else {
     rowItems.forEach(item => {
         item.addEventListener('dblclick', function() {
             console.log("doubleClick!");
+            console.log(this.dataset.value);
         })
 
         item.addEventListener('click', function() {
