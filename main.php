@@ -1,4 +1,7 @@
 <?php
+print_r($_POST);
+
+
 $cmd = "dir main /a-d	";
 //      DIR [pathname(s)] [display_format] [file_attributes] [sorted] [time] [options]
 // $cmd = "ls"; Linux, Mac, Unix
@@ -192,13 +195,30 @@ else {
 
             </tr>
         </table>
-
     </div>
 
     <div class="Test"></div>
     <div class="output"></div>
+
+
+    <form id="TheForm" method="post" action="main.php" target="TheWindow">
+        <input type="hidden" name="something" value="something" />
+        <input type="hidden" name="more" value="something" />
+        <input type="hidden" name="other" value="something" />
+        <button onclick="submitMe()"></button>
+    </form>
+
+    <!-- <script type="text/javascript">
+        window.open('', 'TheWindow');
+        document.getElementById('TheForm').submit();
+    </script> -->
 </body>
 <script type="text/javascript">
+    function submitMe() {
+        window.open('', 'TheWindow');
+        document.getElementById('TheForm').submit();
+    }
+
     let files = <?= json_encode($files) ?>;
     let directory = <?= json_encode($path) ?>;
 
@@ -274,6 +294,7 @@ else {
         })
 
     });
+
 
 
     // console.log(display);
