@@ -1,13 +1,20 @@
 <?php
-print_r($_POST);
+// print_r($_POST);
 
 $lastDir = isset($_POST['lastDir']) ? $_POST['lastDir'] : 'main';
 
-echo $lastDir;
+// echo $lastDir;
 
 $parts = array('dir', ' ', $lastDir, ' ', "/a-d");
 
+// print_r($parts);
+
 $cmd = implode($parts);
+
+echo "\n";
+
+print_r($cmd);
+
 //      DIR [pathname(s)] [display_format] [file_attributes] [sorted] [time] [options]
 // $cmd = "ls"; Linux, Mac, Unix
 
@@ -207,9 +214,7 @@ else {
 
 
     <form id="TheForm" method="post" action="main.php" target="TheWindow">
-        <input type="hidden" name="something" value="something" />
-        <input type="hidden" name="more" value="something" />
-        <input type="hidden" name="other" value="something" />
+        <input type="hidden" id="dirName" name="lastDir" value="undefinied" />
         <button onclick="submitMe()"></button>
     </form>
 
@@ -232,6 +237,7 @@ else {
     let output = document.querySelector('.table');
     let path = document.querySelector('.path');
     let main = document.querySelector('.main');
+    let dirName = document.querySelector('#dirName');
 
     path.innerHTML = directory;
 
@@ -268,18 +274,21 @@ else {
 
             </tr>
         `;
-        console.log(item);
+        // console.log(item);
         output.innerHTML += item;
     });
 
     const rowItems = document.querySelectorAll('.row-item');
 
-    console.log(rowItems)
+    // console.log(rowItems)
 
     rowItems.forEach(item => {
         item.addEventListener('dblclick', function() {
             console.log("doubleClick!");
+            dirName.value = this.dataset.value;
+            console.log(dirName.value)
             console.log(this.dataset.value);
+            submitMe();
         })
 
         item.addEventListener('click', function() {
