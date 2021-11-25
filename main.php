@@ -1,8 +1,13 @@
 <?php
 print_r($_POST);
 
-$lastDir;
-$cmd = "dir main /a-d	";
+$lastDir = isset($_POST['lastDir']) ? $_POST['lastDir'] : 'main';
+
+echo $lastDir;
+
+$parts = array('dir', ' ', $lastDir, ' ', "/a-d");
+
+$cmd = implode($parts);
 //      DIR [pathname(s)] [display_format] [file_attributes] [sorted] [time] [options]
 // $cmd = "ls"; Linux, Mac, Unix
 
