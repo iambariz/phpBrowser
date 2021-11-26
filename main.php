@@ -3,7 +3,9 @@
 
 $lastDir = isset($_POST['pickedDir']) ? $_POST['pickedDir'] : 'C:\\xampp\\htdocs\\projects\\phpBrowser\\main';
 
-// echo $lastDir;
+echo $lastDir;
+
+echo "<pre>";
 
 $parts = array('dir', ' ', $lastDir, ' ', "/a-d");
 $parts2 = array('dir', ' ', $lastDir, ' ', "/a:d ", "/b");
@@ -12,10 +14,10 @@ $parts2 = array('dir', ' ', $lastDir, ' ', "/a:d ", "/b");
 $cmd = implode($parts);
 $cmd2 = implode($parts2);
 
-echo "\n";
-
-// print_r($cmd);
-// print_r($cmd2);
+print_r($cmd);
+echo "<pre>";
+print_r($cmd2);
+echo "<pre>";
 
 //      DIR [pathname(s)] [display_format] [file_attributes] [sorted] [time] [options]
 // $cmd = "ls"; Linux, Mac, Unix
