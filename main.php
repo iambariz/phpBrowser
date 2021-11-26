@@ -1,19 +1,21 @@
 <?php
 // print_r($_POST);
 
-$lastDir = isset($_POST['lastDir']) ? $_POST['lastDir'] : 'main';
+$lastDir = isset($_POST['pickedDir']) ? $_POST['pickedDir'] : 'C:\\xampp\\htdocs\\projects\\phpBrowser\\main';
 
 // echo $lastDir;
 
 $parts = array('dir', ' ', $lastDir, ' ', "/a-d");
-
+$parts2 = array('dir', ' ', $lastDir, ' ', "/a:d ", "/b");
 // print_r($parts);
 
 $cmd = implode($parts);
+$cmd2 = implode($parts2);
 
 echo "\n";
 
-print_r($cmd);
+// print_r($cmd);
+// print_r($cmd2);
 
 //      DIR [pathname(s)] [display_format] [file_attributes] [sorted] [time] [options]
 // $cmd = "ls"; Linux, Mac, Unix
@@ -39,7 +41,7 @@ else {
     };
 }
 
-$cmd2 = "dir main /a:d /b";
+// $cmd2 = "dir C:\\xampp\\htdocs\\projects\\phpBrowser\\main /a:d /b";
 
 exec(escapeshellcmd($cmd2), $output2, $status2);
 if ($status2) echo "Exec command failed";
@@ -214,7 +216,7 @@ else {
 
 
     <form id="TheForm" method="post" action="main.php" target="TheWindow">
-        <input type="hidden" id="dirName" name="lastDir" value="undefinied" />
+        <input type="hidden" id="dirName" name="pickedDir" value="undefinied" />
         <button onclick="submitMe()"></button>
     </form>
 
@@ -231,6 +233,9 @@ else {
 
     let files = <?= json_encode($files) ?>;
     let directory = <?= json_encode($path) ?>;
+    let lastDir = <?= json_encode($lastDir) ?>;
+
+    console.log(lastDir);
 
     let dirs = <?= json_encode($dirs) ?>;
 
@@ -285,9 +290,9 @@ else {
     rowItems.forEach(item => {
         item.addEventListener('dblclick', function() {
             console.log("doubleClick!");
-            dirName.value = this.dataset.value;
-            console.log(dirName.value)
             console.log(this.dataset.value);
+            dirName.value = lastDir + "\\" + this.dataset.value;
+            console.log(dirName.value)
             submitMe();
         })
 
