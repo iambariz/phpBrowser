@@ -23,7 +23,7 @@ echo "<pre>";
 // $cmd = "ls"; Linux, Mac, Unix
 
 $files = array();
-$path = "none";
+$path = $lastDir;
 $dirs = array();
 
 exec(escapeshellcmd($cmd), $output, $status);
@@ -32,9 +32,9 @@ else {
     $count = 0;
     foreach ($output as $line) {
         $parts = preg_split('/\s+/', $line);
-        if ($count == 3) {
-            $path = $line;
-        }
+        // if ($count == 3) {
+        //     $path = $line;
+        // }
         if (preg_match("/^[0-9]{1,2}\/[0-9]{1,2}\/[0-9]{4}$/", $parts[0])) {
             // echo htmlspecialchars("$line\n");
             array_push($files, $line);
@@ -154,6 +154,15 @@ else {
             font-feature-settings: 'liga';
         }
 
+        th.path {
+            width: 523px !important;
+            margin: 0 auto;
+            text-align: center;
+            font-size: 14px;
+            font-weight: 800;
+            padding-bottom: 1rem;
+        }
+
         * {
             font-family: 'Roboto', sans-serif;
         }
@@ -193,7 +202,7 @@ else {
         <table class="table">
             <tr>
 
-                <th class="path" colspan="3">Path</th>
+                <th class="path" colspan="4">Path</th>
 
             </tr>
             <tr>
