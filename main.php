@@ -27,7 +27,7 @@ $path = $lastDir;
 $dirs = array();
 
 exec(escapeshellcmd($cmd), $output, $status);
-if ($status) echo "Exec command failed";
+if ($status) echo "Exec command failed-1";
 else {
     $count = 0;
     foreach ($output as $line) {
@@ -46,7 +46,7 @@ else {
 // $cmd2 = "dir C:\\xampp\\htdocs\\projects\\phpBrowser\\main /a:d /b";
 
 exec(escapeshellcmd($cmd2), $output2, $status2);
-if ($status2) echo "Exec command failed";
+if ($status2) return;
 else {
     foreach ($output2 as $line) {
         array_push($dirs, $line);
@@ -56,6 +56,7 @@ else {
     //     echo htmlspecialchars("$item\n");
     // };
 }
+
 
 
 
