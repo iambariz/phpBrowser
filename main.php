@@ -41,6 +41,7 @@ else {
         }
         $count++;
     };
+    print_r($files);
 }
 
 // $cmd2 = "dir C:\\xampp\\htdocs\\projects\\phpBrowser\\main /a:d /b";
@@ -247,7 +248,6 @@ let files = <?= json_encode($files) ?>;
 let directory = <?= json_encode($path) ?>;
 let lastDir = <?= json_encode($lastDir) ?>;
 
-console.log(lastDir);
 
 let dirs = <?= json_encode($dirs) ?>;
 
@@ -261,9 +261,9 @@ path.innerHTML = directory;
 
 
 let outputData = files.forEach(element => {
-    // console.log(element)
-    const cut = element.split(/[ ,]+/);
-    // console.log(cut)
+    console.log(element)
+    const cut = element.split(/[ ]+/);
+    console.log(cut)
     // Array(4)["19/11/2021", "13:48", "0", "testfile.txt"]​
     // 0: "19/11/2021"​
     // 1: "13:48"​
@@ -275,10 +275,9 @@ let outputData = files.forEach(element => {
             <td>${cut[3]}</td>
                 <td>${cut[2]} byte</td>
                 <td>${cut[0]} ${cut[1]}</td>
-
             </tr>
         `;
-    // console.log(item);
+
     output.innerHTML += item;
 });
 let outputDir = dirs.forEach(element => {
@@ -304,7 +303,7 @@ rowItems.forEach(item => {
         console.log("doubleClick!");
         console.log(this.dataset.value);
         dirName.value = lastDir + this.dataset.value + "\\";
-        console.log(dirName.value)
+        // console.log(dirName.value)
         submitMe();
     })
 
@@ -321,7 +320,7 @@ rowItems.forEach(item => {
             console.log("asd")
         } else {
             this.classList.add('active');
-            console.log(this.classList)
+            // console.log(this.classList)
         }
     })
 
