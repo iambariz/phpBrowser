@@ -1,7 +1,7 @@
 <?php
 // print_r($_POST);
 
-$lastDir = isset($_POST['pickedDir']) ? $_POST['pickedDir'] : 'C:\\xampp\\htdocs\\projects\\phpBrowser\\main';
+$lastDir = isset($_POST['pickedDir']) ? $_POST['pickedDir'] : 'C:\\xampp\\htdocs\\projects\\phpBrowser\\main\\';
 
 echo $lastDir;
 
@@ -114,87 +114,87 @@ else {
 
 
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
 
-        @font-face {
-            font-family: 'Material Icons';
-            font-style: normal;
-            font-weight: 400;
-            src: url(https://example.com/MaterialIcons-Regular.eot);
-            /* For IE6-8 */
-            src: local('Material Icons'),
-                local('MaterialIcons-Regular'),
-                url(https://example.com/MaterialIcons-Regular.woff2) format('woff2'),
-                url(https://example.com/MaterialIcons-Regular.woff) format('woff'),
-                url(https://example.com/MaterialIcons-Regular.ttf) format('truetype');
-        }
+    @font-face {
+        font-family: 'Material Icons';
+        font-style: normal;
+        font-weight: 400;
+        src: url(https://example.com/MaterialIcons-Regular.eot);
+        /* For IE6-8 */
+        src: local('Material Icons'),
+            local('MaterialIcons-Regular'),
+            url(https://example.com/MaterialIcons-Regular.woff2) format('woff2'),
+            url(https://example.com/MaterialIcons-Regular.woff) format('woff'),
+            url(https://example.com/MaterialIcons-Regular.ttf) format('truetype');
+    }
 
-        .material-icons {
-            font-family: 'Material Icons';
-            font-weight: normal;
-            font-style: normal;
-            font-size: 24px;
-            /* Preferred icon size */
-            display: inline-block;
-            line-height: 1;
-            text-transform: none;
-            letter-spacing: normal;
-            word-wrap: normal;
-            white-space: nowrap;
-            direction: ltr;
+    .material-icons {
+        font-family: 'Material Icons';
+        font-weight: normal;
+        font-style: normal;
+        font-size: 24px;
+        /* Preferred icon size */
+        display: inline-block;
+        line-height: 1;
+        text-transform: none;
+        letter-spacing: normal;
+        word-wrap: normal;
+        white-space: nowrap;
+        direction: ltr;
 
-            /* Support for all WebKit browsers. */
-            -webkit-font-smoothing: antialiased;
-            /* Support for Safari and Chrome. */
-            text-rendering: optimizeLegibility;
+        /* Support for all WebKit browsers. */
+        -webkit-font-smoothing: antialiased;
+        /* Support for Safari and Chrome. */
+        text-rendering: optimizeLegibility;
 
-            /* Support for Firefox. */
-            -moz-osx-font-smoothing: grayscale;
+        /* Support for Firefox. */
+        -moz-osx-font-smoothing: grayscale;
 
-            /* Support for IE. */
-            font-feature-settings: 'liga';
-        }
+        /* Support for IE. */
+        font-feature-settings: 'liga';
+    }
 
-        th.path {
-            width: 523px !important;
-            margin: 0 auto;
-            text-align: center;
-            font-size: 14px;
-            font-weight: 800;
-            padding-bottom: 1rem;
-        }
+    th.path {
+        width: 523px !important;
+        margin: 0 auto;
+        text-align: center;
+        font-size: 14px;
+        font-weight: 800;
+        padding-bottom: 1rem;
+    }
 
-        * {
-            font-family: 'Roboto', sans-serif;
-        }
+    * {
+        font-family: 'Roboto', sans-serif;
+    }
 
-        th:nth-of-type(1) {
-            width: 2rem;
-        }
+    th:nth-of-type(1) {
+        width: 2rem;
+    }
 
 
-        th:nth-of-type(3) {
-            border-width: 0px 1px 0px 1px;
-            border-color: #000;
-            border-style: solid;
-        }
+    th:nth-of-type(3) {
+        border-width: 0px 1px 0px 1px;
+        border-color: #000;
+        border-style: solid;
+    }
 
-        th {
-            width: 10rem;
-            cursor: pointer;
+    th {
+        width: 10rem;
+        cursor: pointer;
 
-        }
+    }
 
-        td {
-            text-align: center;
-            cursor: pointer;
+    td {
+        text-align: center;
+        cursor: pointer;
 
-        }
+    }
 
-        .row-item.active {
-            background-color: #000;
-            color: #fff;
-        }
+    .row-item.active {
+        background-color: #000;
+        color: #fff;
+    }
     </style>
 </head>
 
@@ -238,38 +238,38 @@ else {
     </script> -->
 </body>
 <script type="text/javascript">
-    function submitMe() {
-        window.open('', 'TheWindow');
-        document.getElementById('TheForm').submit();
-    }
+function submitMe() {
+    window.open('', 'TheWindow');
+    document.getElementById('TheForm').submit();
+}
 
-    let files = <?= json_encode($files) ?>;
-    let directory = <?= json_encode($path) ?>;
-    let lastDir = <?= json_encode($lastDir) ?>;
+let files = <?= json_encode($files) ?>;
+let directory = <?= json_encode($path) ?>;
+let lastDir = <?= json_encode($lastDir) ?>;
 
-    console.log(lastDir);
+console.log(lastDir);
 
-    let dirs = <?= json_encode($dirs) ?>;
+let dirs = <?= json_encode($dirs) ?>;
 
-    let output = document.querySelector('.table');
-    let path = document.querySelector('.path');
-    let main = document.querySelector('.main');
-    let dirName = document.querySelector('#dirName');
+let output = document.querySelector('.table');
+let path = document.querySelector('.path');
+let main = document.querySelector('.main');
+let dirName = document.querySelector('#dirName');
 
-    path.innerHTML = directory;
+path.innerHTML = directory;
 
 
 
-    let outputData = files.forEach(element => {
-        // console.log(element)
-        const cut = element.split(/[ ,]+/);
-        // console.log(cut)
-        // Array(4)["19/11/2021", "13:48", "0", "testfile.txt"]​
-        // 0: "19/11/2021"​
-        // 1: "13:48"​
-        // 2: "0"​
-        // 3: "testfile.txt"​
-        item = `
+let outputData = files.forEach(element => {
+    // console.log(element)
+    const cut = element.split(/[ ,]+/);
+    // console.log(cut)
+    // Array(4)["19/11/2021", "13:48", "0", "testfile.txt"]​
+    // 0: "19/11/2021"​
+    // 1: "13:48"​
+    // 2: "0"​
+    // 3: "testfile.txt"​
+    item = `
             <tr class="row-item file" data-value="${cut[3]}">
             <td><span class="material-icons">description</span></td>
             <td>${cut[3]}</td>
@@ -278,11 +278,11 @@ else {
 
             </tr>
         `;
-        // console.log(item);
-        output.innerHTML += item;
-    });
-    let outputDir = dirs.forEach(element => {
-        item = `
+    // console.log(item);
+    output.innerHTML += item;
+});
+let outputDir = dirs.forEach(element => {
+    item = `
             <tr class="row-item dir" data-value="${element}">
             <td ><span class="material-icons">
             folder
@@ -291,59 +291,59 @@ else {
 
             </tr>
         `;
-        // console.log(item);
-        output.innerHTML += item;
-    });
+    // console.log(item);
+    output.innerHTML += item;
+});
 
-    const rowItems = document.querySelectorAll('.row-item');
+const rowItems = document.querySelectorAll('.row-item');
 
-    // console.log(rowItems)
+// console.log(rowItems)
 
-    rowItems.forEach(item => {
-        item.addEventListener('dblclick', function() {
-            console.log("doubleClick!");
-            console.log(this.dataset.value);
-            dirName.value = lastDir + "\\" + this.dataset.value;
-            console.log(dirName.value)
-            submitMe();
-        })
+rowItems.forEach(item => {
+    item.addEventListener('dblclick', function() {
+        console.log("doubleClick!");
+        console.log(this.dataset.value);
+        dirName.value = lastDir + this.dataset.value + "\\";
+        console.log(dirName.value)
+        submitMe();
+    })
 
-        item.addEventListener('click', function() {
-            const item = document.querySelector('.active');
-            // console.log(item == this);
-            if (item) {
-                item.classList.remove('active');
-            }
-        })
-        // dblclick
-        item.addEventListener('click', function() {
-            if (this.classList.contains('active')) {
-                console.log("asd")
-            } else {
-                this.classList.add('active');
-                console.log(this.classList)
-            }
-        })
+    item.addEventListener('click', function() {
+        const item = document.querySelector('.active');
+        // console.log(item == this);
+        if (item) {
+            item.classList.remove('active');
+        }
+    })
+    // dblclick
+    item.addEventListener('click', function() {
+        if (this.classList.contains('active')) {
+            console.log("asd")
+        } else {
+            this.classList.add('active');
+            console.log(this.classList)
+        }
+    })
 
-    });
-
-
-
-    // console.log(display);
-
-    // var cookies = document.cookie.split(";").
-    // map(function(el) {
-    //     return el.split("=");
-    // }).
-    // reduce(function(prev, cur) {
-    //     prev[cur[0]] = cur[1];
-    //     return prev
-    // }, {});
-    // alert(cookies["TestCookie"]); // Value set with PHP.
+});
 
 
-    // var div = document.getElementById("dom-target");
-    // var myData = div.textContent;
+
+// console.log(display);
+
+// var cookies = document.cookie.split(";").
+// map(function(el) {
+//     return el.split("=");
+// }).
+// reduce(function(prev, cur) {
+//     prev[cur[0]] = cur[1];
+//     return prev
+// }, {});
+// alert(cookies["TestCookie"]); // Value set with PHP.
+
+
+// var div = document.getElementById("dom-target");
+// var myData = div.textContent;
 </script>
 
 
