@@ -187,6 +187,10 @@ else {
         background-color: #000;
         color: #fff;
     }
+
+    button {
+        display: none;
+    }
     </style>
 </head>
 
@@ -194,9 +198,7 @@ else {
     <div class="main">
         <table class="table">
             <tr>
-
                 <th class="path" colspan="4">Path</th>
-
             </tr>
             <tr>
                 <th></th>
@@ -206,11 +208,11 @@ else {
             </tr>
             <tr>
 
-                <td colspan="4"><span class="material-icons">
+                <td colspan="4">
+                    <span class="material-icons " onClick="previousDir()">
                         more_horiz
-                    </span></td>
-
-
+                    </span>
+                </td>
             </tr>
         </table>
     </div>
@@ -246,15 +248,17 @@ let output = document.querySelector('.table');
 let path = document.querySelector('.path');
 let main = document.querySelector('.main');
 let dirName = document.querySelector('#dirName');
+let backButton = document.querySelector('.material-icons');
+
 
 path.innerHTML = directory;
 
 
 
 let outputData = files.forEach(element => {
-    console.log(element)
+    // console.log(element)
     const cut = element.split(/[ ]+/);
-    console.log(cut)
+    // console.log(cut)
     // Array(4)["19/11/2021", "13:48", "0", "testfile.txt"]​
     // 0: "19/11/2021"​
     // 1: "13:48"​
@@ -291,8 +295,8 @@ const rowItems = document.querySelectorAll('.row-item');
 
 rowItems.forEach(item => {
     item.addEventListener('dblclick', function() {
-        console.log("doubleClick!");
-        console.log(this.dataset.value);
+        // console.log("doubleClick!");
+        // console.log(this.dataset.value);
         dirName.value = lastDir + this.dataset.value + "\\";
         // console.log(dirName.value)
         submitMe();
@@ -308,18 +312,33 @@ rowItems.forEach(item => {
     // dblclick
     item.addEventListener('click', function() {
         if (this.classList.contains('active')) {
-            console.log("asd")
+            // console.log("asd")
         } else {
             this.classList.add('active');
             // console.log(this.classList)
         }
     })
 
+
 });
 
+function previousDir() {
+    // console.log(directory.split("\\"))
+    //Array(7) [ "C:", "xampp", "htdocs", "projects", "phpBrowser", "main", "" ]
+    let splitted = directory.split("\\");
+    if (splitted[splitted.length - 2] != "main") {
+        // splitted = splitted.splice(splitted[splitted.length - 2], 1);
+        let tar = splitted.length - 2;
+        splitted.splice(tar, 1);
+        splitted = splitted.join("\\");
+        dirName.value = splitted;
+        submitMe();
+    } else {
+        return;
+    }
+}
 
 
-// console.log(display);
 
 // var cookies = document.cookie.split(";").
 // map(function(el) {
