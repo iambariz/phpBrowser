@@ -3,10 +3,12 @@
 
 $lastDir = isset($_POST['pickedDir']) ? $_POST['pickedDir'] : 'C:\\xampp\\htdocs\\projects\\phpBrowser\\main\\';
 
-echo $lastDir;
+// echo $lastDir;
 
-echo "<pre>";
+// echo "<pre>";
 
+
+//cmd commands
 $parts = array('dir', ' ', $lastDir, ' ', "/a-d");
 $parts2 = array('dir', ' ', $lastDir, ' ', "/a:d ", "/b");
 // print_r($parts);
@@ -14,10 +16,10 @@ $parts2 = array('dir', ' ', $lastDir, ' ', "/a:d ", "/b");
 $cmd = implode($parts);
 $cmd2 = implode($parts2);
 
-print_r($cmd);
-echo "<pre>";
-print_r($cmd2);
-echo "<pre>";
+// print_r($cmd);
+// echo "<pre>";
+// print_r($cmd2);
+// echo "<pre>";
 
 //      DIR [pathname(s)] [display_format] [file_attributes] [sorted] [time] [options]
 // $cmd = "ls"; Linux, Mac, Unix
@@ -26,6 +28,7 @@ $files = array();
 $path = $lastDir;
 $dirs = array();
 
+//Get files
 exec(escapeshellcmd($cmd), $output, $status);
 if ($status) echo "Exec command failed-1";
 else {
@@ -41,11 +44,13 @@ else {
         }
         $count++;
     };
-    print_r($files);
+    // print_r($files);
 }
 
 // $cmd2 = "dir C:\\xampp\\htdocs\\projects\\phpBrowser\\main /a:d /b";
 
+
+//Get directories
 exec(escapeshellcmd($cmd2), $output2, $status2);
 if ($status2) return;
 else {
@@ -57,14 +62,8 @@ else {
     //     echo htmlspecialchars("$item\n");
     // };
 }
-
-
-
-
-
 // function insertItem($arr)
 // {
-
 //     echo
 //     '<script type="text/JavaScript">
 //     var js_variable = echo json_encode($php_variable);
@@ -74,16 +73,9 @@ else {
 
 //     const main = document.querySelector(".main");
 
-
-
 //     </script>';
 // }
-
-
-
 // insertItem([]);
-
-
 // (
 //     [0] => 19/11/2021
 //     [1] => 13:48
@@ -101,7 +93,6 @@ else {
 // } else {
 //     echo "fail";
 // }
-
 
 ?>
 <html>
