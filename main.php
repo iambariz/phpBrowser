@@ -2,6 +2,7 @@
 // print_r($_POST);
 
 $lastDir = isset($_POST['pickedDir']) ? $_POST['pickedDir'] : 'C:\\xampp\\htdocs\\projects\\phpBrowser\\main\\';
+$txtPath = isset($_POST['txtPath']) ? $_POST['txtPath'] : 'none';
 
 // echo $lastDir;
 
@@ -310,6 +311,7 @@ rowItems.forEach(item => {
             if (fileFormat == "txt") {
                 dirName.value = lastDir + "\\";
                 txtPath.value = directory + e.currentTarget.dataset.value;
+                submitMe();
                 // console.log(txtName.value)
             }
         }
