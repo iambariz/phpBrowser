@@ -223,6 +223,7 @@ else {
 
     <form id="TheForm" method="post" action="main.php" target="TheWindow">
         <input type="hidden" id="dirName" name="pickedDir" value="undefinied" />
+        <input type="hidden" id="txtPath" name="txtPath" value="undefinied" />
         <button onclick="submitMe()"></button>
     </form>
 
@@ -248,6 +249,7 @@ let output = document.querySelector('.table');
 let path = document.querySelector('.path');
 let main = document.querySelector('.main');
 let dirName = document.querySelector('#dirName');
+let txtPath = document.querySelector('#txtPath');
 let backButton = document.querySelector('.material-icons');
 
 
@@ -302,6 +304,14 @@ rowItems.forEach(item => {
             dirName.value = lastDir + this.dataset.value + "\\";
             // console.log(dirName.value)
             submitMe();
+        } else {
+            let fileFormat = e.currentTarget.dataset.value.split(".");
+            fileFormat = fileFormat[fileFormat.length - 1];
+            if (fileFormat == "txt") {
+                dirName.value = lastDir + "\\";
+                txtPath.value = directory + e.currentTarget.dataset.value;
+                // console.log(txtName.value)
+            }
         }
 
     })
