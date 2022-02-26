@@ -294,12 +294,16 @@ const rowItems = document.querySelectorAll('.row-item');
 // console.log(rowItems)
 
 rowItems.forEach(item => {
-    item.addEventListener('dblclick', function() {
+    item.addEventListener('dblclick', function(e) {
         // console.log("doubleClick!");
         // console.log(this.dataset.value);
-        dirName.value = lastDir + this.dataset.value + "\\";
-        // console.log(dirName.value)
-        submitMe();
+
+        if (e.currentTarget.classList.contains("dir")) {
+            dirName.value = lastDir + this.dataset.value + "\\";
+            // console.log(dirName.value)
+            submitMe();
+        }
+
     })
 
     item.addEventListener('click', function() {
