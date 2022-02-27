@@ -158,6 +158,12 @@ else {
         font-feature-settings: 'liga';
     }
 
+    .main {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+    }
+
     th.path {
         width: 523px !important;
         margin: 0 auto;
@@ -202,33 +208,48 @@ else {
     button {
         display: none;
     }
+
+    h2 {
+        text-align: center;
+    }
+
+    .editArea button {
+        display: block;
+    }
     </style>
 </head>
 
 <body>
     <div class="main">
-        <div class="editArea"></div>
+
+        <div class="tableArea">
+            <table class="table">
+                <tr>
+                    <th class="path" colspan="4">Path</th>
+                </tr>
+                <tr>
+                    <th></th>
+                    <th>File Name</th>
+                    <th>Size</th>
+                    <th>Date Modified</th>
+                </tr>
+                <tr>
+
+                    <td colspan="4">
+                        <span class="material-icons " onClick="previousDir()">
+                            more_horiz
+                        </span>
+                    </td>
+                </tr>
+            </table>
+        </div>
 
 
-        <table class="table">
-            <tr>
-                <th class="path" colspan="4">Path</th>
-            </tr>
-            <tr>
-                <th></th>
-                <th>File Name</th>
-                <th>Size</th>
-                <th>Date Modified</th>
-            </tr>
-            <tr>
+        <div class="editArea">
+            <h2>Editable file</h2>
+        </div>
 
-                <td colspan="4">
-                    <span class="material-icons " onClick="previousDir()">
-                        more_horiz
-                    </span>
-                </td>
-            </tr>
-        </table>
+
     </div>
 
     <div class="Test"></div>
@@ -274,6 +295,7 @@ if (fileText != null) {
     let div = document.querySelector(".editArea");
     let input = document.createElement("textarea");
     let button = document.createElement("button");
+    button.innerHTML = "Done editing";
     input.name = "post";
     input.maxLength = "50000";
     input.value = fileText;
