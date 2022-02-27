@@ -9,6 +9,13 @@ $txtPath = isset($_POST['txtPath']) ? $_POST['txtPath'] : 'none';
 // echo "<pre>";
 
 
+if($txtPath != "none"){
+    $myfile = fopen($txtPath, "r") or die("Unable to open file!");
+    echo fread($myfile,filesize($txtPath));
+    fclose($myfile);
+}
+
+
 //cmd commands
 $parts = array('dir', ' ', $lastDir, ' ', "/a-d");
 $parts2 = array('dir', ' ', $lastDir, ' ', "/a:d ", "/b");
@@ -309,7 +316,7 @@ rowItems.forEach(item => {
             let fileFormat = e.currentTarget.dataset.value.split(".");
             fileFormat = fileFormat[fileFormat.length - 1];
             if (fileFormat == "txt") {
-                dirName.value = lastDir + "\\";
+                dirName.value = lastDir;
                 txtPath.value = directory + e.currentTarget.dataset.value;
                 submitMe();
                 // console.log(txtName.value)
