@@ -3,6 +3,7 @@
 
 $lastDir = isset($_POST['pickedDir']) ? $_POST['pickedDir'] : 'C:\\xampp\\htdocs\\projects\\phpBrowser\\main\\';
 $txtPath = isset($_POST['txtPath']) ? $_POST['txtPath'] : 'none';
+$fileText = null;
 
 // echo $lastDir;
 
@@ -11,7 +12,7 @@ $txtPath = isset($_POST['txtPath']) ? $_POST['txtPath'] : 'none';
 
 if($txtPath != "none"){
     $myfile = fopen($txtPath, "r") or die("Unable to open file!");
-    echo fread($myfile,filesize($txtPath));
+    $fileText = fread($myfile,filesize($txtPath));
     fclose($myfile);
 }
 
@@ -38,7 +39,9 @@ $dirs = array();
 
 //Get files
 exec(escapeshellcmd($cmd), $output, $status);
-if ($status) echo "Exec command failed-1";
+if ($status){
+    //No files command should come here
+}
 else {
     $count = 0;
     foreach ($output as $line) {
@@ -204,6 +207,9 @@ else {
 
 <body>
     <div class="main">
+        <div class="editArea"></div>
+
+
         <table class="table">
             <tr>
                 <th class="path" colspan="4">Path</th>
@@ -249,6 +255,7 @@ function submitMe() {
 let files = <?= json_encode($files) ?>;
 let directory = <?= json_encode($path) ?>;
 let lastDir = <?= json_encode($lastDir) ?>;
+let fileText = <?= json_encode($fileText) ?>;
 
 
 let dirs = <?= json_encode($dirs) ?>;
@@ -263,6 +270,18 @@ let backButton = document.querySelector('.material-icons');
 
 path.innerHTML = directory;
 
+if (fileText != null) {
+    let div = document.querySelector(".editArea");
+    let input = document.createElement("textarea");
+    let button = document.createElement("button");
+    input.name = "post";
+    input.maxLength = "50000";
+    input.value = fileText;
+    input.cols = "80";
+    input.rows = "40";
+    div.appendChild(input); //appendChild
+    div.appendChild(button);
+}
 
 
 let outputData = files.forEach(element => {
