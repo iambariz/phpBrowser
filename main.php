@@ -3,11 +3,16 @@
 
 $lastDir = isset($_POST['pickedDir']) ? $_POST['pickedDir'] : 'C:\\xampp\\htdocs\\projects\\phpBrowser\\main\\';
 $txtPath = isset($_POST['txtPath']) ? $_POST['txtPath'] : 'none';
+$newFile = isset($_POST['newFile']) ? $_POST['creatingMode'] : 'none';
 $fileText = null;
 
 // echo $lastDir;
 
 // echo "<pre>";
+
+if($newFile == "none"){
+    file_put_contents($newFile, $fileText);
+}
 
 
 if($txtPath != "none"){
@@ -216,6 +221,10 @@ else {
     .editArea button {
         display: block;
     }
+
+    .addfile {
+        font-size: 2rem;
+    }
     </style>
 </head>
 
@@ -241,6 +250,15 @@ else {
                         </span>
                     </td>
                 </tr>
+                <tr>
+
+                    <td colspan="1">
+                        <span class="material-icons addfile" onClick="previousDir()">
+                            note_add
+                        </span>
+
+                    </td>
+                </tr>
             </table>
         </div>
 
@@ -254,6 +272,7 @@ else {
 
     <div class="Test"></div>
     <div class="output"></div>
+
 
 
     <form id="TheForm" method="post" action="main.php" target="TheWindow">
@@ -300,7 +319,7 @@ if (fileText != null) {
     input.maxLength = "50000";
     input.value = fileText;
     input.cols = "80";
-    input.rows = "40";
+    input.rows = "30";
     div.appendChild(input); //appendChild
     div.appendChild(button);
 }
