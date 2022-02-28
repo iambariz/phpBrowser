@@ -1,15 +1,17 @@
 <?php
 $lastDir = isset($_POST['pickedDir']) ? $_POST['pickedDir'] : 'C:\\xampp\\htdocs\\projects\\phpBrowser\\main\\';
-$txtPath = isset($_POST['txtPath']) ? $_POST['txtPath'] : 'none';
-$newFile = isset($_POST['newFile']) ? $_POST['creatingMode'] : 'none';
+$txtPath = isset($_POST['txtPath']) ? $_POST['txtPath'] : "undefinied";
+$newFile = isset($_POST['newFile']) ? $_POST['newFile'] : "undefinied";
 $fileText = null;
 
-if($newFile != "none"){
+echo $newFile;
+
+if($newFile != "undefinied"){
     file_put_contents($newFile, $fileText);
 }
 
 
-if($txtPath != "none"){
+if($txtPath != "undefinied"){
     $myfile = fopen($txtPath, "r") or die("Unable to open file!");
     $fileText = fread($myfile,filesize($txtPath));
     fclose($myfile);
@@ -337,6 +339,7 @@ else {
         <form id="TheForm" method="post" action="main.php" target="TheWindow">
             <input type="hidden" id="dirName" name="pickedDir" value="undefinied" />
             <input type="hidden" id="txtPath" name="txtPath" value="undefinied" />
+            <input type="hidden" id="newFile" name="newFile" value="undefinied" />
             <button onclick="submitMe()"></button>
         </form>
 
@@ -368,7 +371,6 @@ const backButton = document.querySelector('.material-icons');
 const addBtn = document.querySelector('.add-btn');
 const modal = document.getElementById("myModal");
 const menuOptions = document.querySelector('.menu-option');
-const rowItems = document.querySelectorAll('.row-item');
 
 
 // Get the <span> element that closes the modal
@@ -435,6 +437,8 @@ let outputDir = dirs.forEach(element => {
 
     output.innerHTML += item;
 });
+
+const rowItems = document.querySelectorAll('.row-item');
 
 rowItems.forEach(item => {
     item.addEventListener('dblclick', function(e) {
