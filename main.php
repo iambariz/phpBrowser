@@ -230,13 +230,62 @@ else {
         font-size: 2rem;
         position: absolute;
         cursor: pointer;
-        bottom: -1rem;
+        bottom: -3rem;
         right: 0;
         transition: .6s ease all;
     }
 
     .add-btn:hover {
         color: #00008B;
+    }
+
+    /* The Modal (background) */
+    .modal {
+        display: none;
+        /* Hidden by default */
+        position: fixed;
+        /* Stay in place */
+        z-index: 1;
+        /* Sit on top */
+        left: 0;
+        top: 0;
+        width: 100%;
+        /* Full width */
+        height: 100%;
+        /* Full height */
+        overflow: auto;
+        /* Enable scroll if needed */
+        background-color: rgb(0, 0, 0);
+        /* Fallback color */
+        background-color: rgba(0, 0, 0, 0.4);
+        /* Black w/ opacity */
+    }
+
+    /* Modal Content/Box */
+    .modal-content {
+        background-color: #fefefe;
+        margin: 15% auto;
+        /* 15% from the top and centered */
+        padding: 20px;
+        border: 1px solid #888;
+        max-width: 25rem;
+        max-height: 25rem;
+        /* Could be more or less, depending on screen size */
+    }
+
+    /* The Close Button */
+    .close {
+        color: #aaa;
+        float: right;
+        font-size: 28px;
+        font-weight: bold;
+    }
+
+    .close:hover,
+    .close:focus {
+        color: black;
+        text-decoration: none;
+        cursor: pointer;
     }
     </style>
 </head>
@@ -276,6 +325,25 @@ else {
             <h2>Editable file</h2>
         </div>
 
+        <!-- Trigger/Open The Modal -->
+        <button id="myBtn">Open Modal</button>
+
+        <!-- The Modal -->
+        <div id="myModal" class="modal">
+
+            <!-- Modal content -->
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <ul>
+                    <li> <span class="material-icons addfile">
+                            note_add
+                        </span>
+                    </li>
+                    <li></li>
+                </ul>
+            </div>
+
+        </div>
 
     </div>
 
@@ -315,7 +383,29 @@ let main = document.querySelector('.main');
 let dirName = document.querySelector('#dirName');
 let txtPath = document.querySelector('#txtPath');
 let backButton = document.querySelector('.material-icons');
+let addBtn = document.querySelector('.add-btn');
+let modal = document.getElementById("myModal");
 
+
+// Get the <span> element that closes the modal
+let span = document.getElementsByClassName("close")[0];
+
+// When the user clicks on the button, open the modal
+addBtn.onclick = function() {
+    modal.style.display = "block";
+}
+
+// When the user clicks on <span> (x), close the modal
+span.onclick = function() {
+    modal.style.display = "none";
+}
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+    if (event.target == modal) {
+        modal.style.display = "none";
+    }
+}
 
 path.innerHTML = directory;
 
