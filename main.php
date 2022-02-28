@@ -287,6 +287,28 @@ else {
         text-decoration: none;
         cursor: pointer;
     }
+
+    .wrapper {
+        margin: 4rem 2rem;
+    }
+
+    .menu-option {
+        margin: .25rem .5rem;
+        padding: .5rem;
+        background-color: #fff;
+        color: #000;
+        cursor: pointer;
+        font-weight: 800;
+        display: flex;
+        align-items: center;
+    }
+
+    .menu-option:hover {
+        background-color: #000;
+        color: #fff;
+    }
+
+    .menu-option span {}
     </style>
 </head>
 
@@ -334,31 +356,40 @@ else {
             <!-- Modal content -->
             <div class="modal-content">
                 <span class="close">&times;</span>
-                <ul>
-                    <li> <span class="material-icons addfile">
+                <div class="wrapper">
+                    <div class="menu-option">
+                        <span class="material-icons addfile">
                             note_add
                         </span>
-                    </li>
-                    <li></li>
-                </ul>
+                        <span>Create new file</span>
+                    </div>
+                    <div class="menu-option">
+                        <span class="material-icons addfile">
+                            create_new_folder
+                        </span>
+                        <span>Create new folder</span>
+                    </div>
+
+                    </ul>
+                </div class="wrapper">
+
             </div>
 
         </div>
 
-    </div>
-
-    <div class="Test"></div>
-    <div class="output"></div>
-
+        <div class=" Test">
+        </div>
+        <div class="output"></div>
 
 
-    <form id="TheForm" method="post" action="main.php" target="TheWindow">
-        <input type="hidden" id="dirName" name="pickedDir" value="undefinied" />
-        <input type="hidden" id="txtPath" name="txtPath" value="undefinied" />
-        <button onclick="submitMe()"></button>
-    </form>
 
-    <!-- <script type="text/javascript">
+        <form id="TheForm" method="post" action="main.php" target="TheWindow">
+            <input type="hidden" id="dirName" name="pickedDir" value="undefinied" />
+            <input type="hidden" id="txtPath" name="txtPath" value="undefinied" />
+            <button onclick="submitMe()"></button>
+        </form>
+
+        <!-- <script type="text/javascript">
         window.open('', 'TheWindow');
         document.getElementById('TheForm').submit();
     </script> -->
