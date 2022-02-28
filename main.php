@@ -1,14 +1,8 @@
 <?php
-// print_r($_POST);
-
 $lastDir = isset($_POST['pickedDir']) ? $_POST['pickedDir'] : 'C:\\xampp\\htdocs\\projects\\phpBrowser\\main\\';
 $txtPath = isset($_POST['txtPath']) ? $_POST['txtPath'] : 'none';
 $newFile = isset($_POST['newFile']) ? $_POST['creatingMode'] : 'none';
 $fileText = null;
-
-// echo $lastDir;
-
-// echo "<pre>";
 
 if($newFile != "none"){
     file_put_contents($newFile, $fileText);
@@ -25,15 +19,11 @@ if($txtPath != "none"){
 //cmd commands
 $parts = array('dir', ' ', $lastDir, ' ', "/a-d");
 $parts2 = array('dir', ' ', $lastDir, ' ', "/a:d ", "/b");
-// print_r($parts);
 
 $cmd = implode($parts);
 $cmd2 = implode($parts2);
 
-// print_r($cmd);
-// echo "<pre>";
-// print_r($cmd2);
-// echo "<pre>";
+
 
 //      DIR [pathname(s)] [display_format] [file_attributes] [sorted] [time] [options]
 // $cmd = "ls"; Linux, Mac, Unix
@@ -51,19 +41,13 @@ else {
     $count = 0;
     foreach ($output as $line) {
         $parts = preg_split('/\s+/', $line);
-        // if ($count == 3) {
-        //     $path = $line;
-        // }
         if (preg_match("/^[0-9]{1,2}\/[0-9]{1,2}\/[0-9]{4}$/", $parts[0])) {
-            // echo htmlspecialchars("$line\n");
             array_push($files, $line);
         }
         $count++;
     };
-    // print_r($files);
 }
 
-// $cmd2 = "dir C:\\xampp\\htdocs\\projects\\phpBrowser\\main /a:d /b";
 
 
 //Get directories
@@ -73,42 +57,8 @@ else {
     foreach ($output2 as $line) {
         array_push($dirs, $line);
     };
-    // foreach ($dirs as $item) {
-    //     echo "<pre>";
-    //     echo htmlspecialchars("$item\n");
-    // };
+
 }
-// function insertItem($arr)
-// {
-//     echo
-//     '<script type="text/JavaScript">
-//     var js_variable = echo json_encode($php_variable);
-//     console.log(js_variable);
-
-//     let arr = $arr;
-
-//     const main = document.querySelector(".main");
-
-//     </script>';
-// }
-// insertItem([]);
-// (
-//     [0] => 19/11/2021
-//     [1] => 13:48
-//     [2] => 0
-//     [3] => testfile
-//     [4] => -
-//     [5] => Copy
-//     [6] => (3).txt
-// )
-
-
-// $date = "06/01/1996";
-// if (preg_match("/^[0-9]{1,2}\/[0-9]{1,2}\/[0-9]{4}$/", $date)) {
-//     echo "succes";
-// } else {
-//     echo "fail";
-// }
 
 ?>
 <html>
@@ -348,6 +298,7 @@ else {
 
         <div class="createArea">
             <h2>Create area</h2>
+
         </div>
 
         <div class="editArea">
@@ -452,20 +403,14 @@ if (fileText != null) {
     input.value = fileText;
     input.cols = "80";
     input.rows = "30";
-    div.appendChild(input); //appendChild
+    div.appendChild(input);
     div.appendChild(button);
 }
 
 
 let outputData = files.forEach(element => {
-    // console.log(element)
     const cut = element.split(/[ ]+/);
-    // console.log(cut)
     // Array(4)["19/11/2021", "13:48", "0", "testfile.txt"]​
-    // 0: "19/11/2021"​
-    // 1: "13:48"​
-    // 2: "0"​
-    // 3: "testfile.txt"​
     item = `
             <tr class="row-item file" data-value="${cut[3]}">
             <td><span class="material-icons">description</span></td>
@@ -487,21 +432,15 @@ let outputDir = dirs.forEach(element => {
 
             </tr>
         `;
-    // console.log(item);
+
     output.innerHTML += item;
 });
 
-
-// console.log(rowItems)
-
 rowItems.forEach(item => {
     item.addEventListener('dblclick', function(e) {
-        // console.log("doubleClick!");
-        // console.log(this.dataset.value);
 
         if (e.currentTarget.classList.contains("dir")) {
             dirName.value = lastDir + this.dataset.value + "\\";
-            // console.log(dirName.value)
             submitMe();
         } else {
             let fileFormat = e.currentTarget.dataset.value.split(".");
@@ -510,7 +449,6 @@ rowItems.forEach(item => {
                 dirName.value = lastDir;
                 txtPath.value = directory + e.currentTarget.dataset.value;
                 submitMe();
-                // console.log(txtName.value)
             }
         }
 
@@ -518,18 +456,14 @@ rowItems.forEach(item => {
 
     item.addEventListener('click', function() {
         const item = document.querySelector('.active');
-        // console.log(item == this);
         if (item) {
             item.classList.remove('active');
         }
     })
     // dblclick
     item.addEventListener('click', function() {
-        if (this.classList.contains('active')) {
-            // console.log("asd")
-        } else {
+        if (this.classList.contains('active')) {} else {
             this.classList.add('active');
-            // console.log(this.classList)
         }
     })
 
@@ -537,11 +471,9 @@ rowItems.forEach(item => {
 });
 
 function previousDir() {
-    // console.log(directory.split("\\"))
     //Array(7) [ "C:", "xampp", "htdocs", "projects", "phpBrowser", "main", "" ]
     let splitted = directory.split("\\");
     if (splitted[splitted.length - 2] != "main") {
-        // splitted = splitted.splice(splitted[splitted.length - 2], 1);
         let tar = splitted.length - 2;
         splitted.splice(tar, 1);
         splitted = splitted.join("\\");
@@ -551,22 +483,6 @@ function previousDir() {
         return;
     }
 }
-
-
-
-// var cookies = document.cookie.split(";").
-// map(function(el) {
-//     return el.split("=");
-// }).
-// reduce(function(prev, cur) {
-//     prev[cur[0]] = cur[1];
-//     return prev
-// }, {});
-// alert(cookies["TestCookie"]); // Value set with PHP.
-
-
-// var div = document.getElementById("dom-target");
-// var myData = div.textContent;
 </script>
 
 
