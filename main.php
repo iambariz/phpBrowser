@@ -10,7 +10,7 @@ $fileText = null;
 
 // echo "<pre>";
 
-if($newFile == "none"){
+if($newFile != "none"){
     file_put_contents($newFile, $fileText);
 }
 
@@ -137,6 +137,10 @@ else {
             url(https://example.com/MaterialIcons-Regular.ttf) format('truetype');
     }
 
+    .tableArea {
+        position: relative;
+    }
+
     .material-icons {
         font-family: 'Material Icons';
         font-weight: normal;
@@ -222,8 +226,17 @@ else {
         display: block;
     }
 
-    .addfile {
+    .add-btn {
         font-size: 2rem;
+        position: absolute;
+        cursor: pointer;
+        bottom: -1rem;
+        right: 0;
+        transition: .6s ease all;
+    }
+
+    .add-btn:hover {
+        color: #00008B;
     }
     </style>
 </head>
@@ -242,6 +255,7 @@ else {
                     <th>Size</th>
                     <th>Date Modified</th>
                 </tr>
+
                 <tr>
 
                     <td colspan="4">
@@ -250,16 +264,11 @@ else {
                         </span>
                     </td>
                 </tr>
-                <tr>
 
-                    <td colspan="1">
-                        <span class="material-icons addfile" onClick="previousDir()">
-                            note_add
-                        </span>
-
-                    </td>
-                </tr>
             </table>
+            <span class="material-icons add-btn " onClick="previousDir()">
+                add_circle
+            </span>
         </div>
 
 
