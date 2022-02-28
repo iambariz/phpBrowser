@@ -2,9 +2,10 @@
 $lastDir = isset($_POST['pickedDir']) ? $_POST['pickedDir'] : 'C:\\xampp\\htdocs\\projects\\phpBrowser\\main\\';
 $txtPath = isset($_POST['txtPath']) ? $_POST['txtPath'] : "undefinied";
 $newFile = isset($_POST['newFile']) ? $_POST['newFile'] : "undefinied";
+$fileTextInput = isset($_POST['fileTextInput']) ? $_POST['fileTextInput'] : "undefinied";
 $fileText = null;
 
-echo $newFile;
+// echo $newFile;
 
 if($newFile != "undefinied"){
     file_put_contents($newFile, $fileText);
@@ -89,7 +90,7 @@ else {
             url(https://example.com/MaterialIcons-Regular.ttf) format('truetype');
     }
 
-    .tableArea {
+    .tableWrapper {
         position: relative;
     }
 
@@ -272,35 +273,43 @@ else {
     <div class="main">
 
         <div class="tableArea">
-            <table class="table">
-                <tr>
-                    <th class="path" colspan="4">Path</th>
-                </tr>
-                <tr>
-                    <th></th>
-                    <th>File Name</th>
-                    <th>Size</th>
-                    <th>Date Modified</th>
-                </tr>
+            <div class="tableWrapper">
 
-                <tr>
 
-                    <td colspan="4">
-                        <span class="material-icons " onClick="previousDir()">
-                            more_horiz
-                        </span>
-                    </td>
-                </tr>
+                <table class="table">
+                    <tr>
+                        <th class="path" colspan="4">Path</th>
+                    </tr>
+                    <tr>
+                        <th></th>
+                        <th>File Name</th>
+                        <th>Size</th>
+                        <th>Date Modified</th>
+                    </tr>
 
-            </table>
-            <span class="material-icons add-btn " onClick="previousDir()">
-                add_circle
-            </span>
+                    <tr>
+
+                        <td colspan="4">
+                            <span class="material-icons " onClick="previousDir()">
+                                more_horiz
+                            </span>
+                        </td>
+                    </tr>
+
+                </table>
+
+                <span class="material-icons add-btn " onClick="previousDir()">
+                    add_circle
+                </span>
+            </div>
         </div>
 
         <div class="createArea">
             <h2>Create area</h2>
-
+            <h4>File name</h4>
+            <input type="text" id="lname" name="lname"><br><br>
+            <h4>Content</h4>
+            <textarea name="newItemName" cols="50" rows="25"></textarea>
         </div>
 
         <div class="editArea">
@@ -340,6 +349,7 @@ else {
             <input type="hidden" id="dirName" name="pickedDir" value="undefinied" />
             <input type="hidden" id="txtPath" name="txtPath" value="undefinied" />
             <input type="hidden" id="newFile" name="newFile" value="undefinied" />
+            <input type="hidden" id="fileTextInput" name="fileTextInput" value="undefinied" />
             <button onclick="submitMe()"></button>
         </form>
 
@@ -370,7 +380,7 @@ const txtPath = document.querySelector('#txtPath');
 const backButton = document.querySelector('.material-icons');
 const addBtn = document.querySelector('.add-btn');
 const modal = document.getElementById("myModal");
-const menuOptions = document.querySelector('.menu-option');
+const menuOptions = document.querySelectorAll('.menu-option');
 
 
 // Get the <span> element that closes the modal
@@ -487,6 +497,14 @@ function previousDir() {
         return;
     }
 }
+
+menuOptions[0].addEventListener('click', function(e) {
+    console.log(this);
+})
+
+menuOptions[1].addEventListener('click', function(e) {
+    console.log(this);
+})
 </script>
 
 
