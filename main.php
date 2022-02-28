@@ -289,7 +289,7 @@ else {
     }
 
     .wrapper {
-        margin: 4rem 2rem;
+        margin: 2rem 1rem;
     }
 
     .menu-option {
@@ -306,6 +306,10 @@ else {
     .menu-option:hover {
         background-color: #000;
         color: #fff;
+    }
+
+    .addfile {
+        padding-right: 1rem;
     }
 
     .menu-option span {}
@@ -342,13 +346,15 @@ else {
             </span>
         </div>
 
+        <div class="createArea">
+            <h2>Create area</h2>
+        </div>
 
         <div class="editArea">
             <h2>Editable file</h2>
         </div>
 
-        <!-- Trigger/Open The Modal -->
-        <button id="myBtn">Open Modal</button>
+
 
         <!-- The Modal -->
         <div id="myModal" class="modal">
@@ -377,12 +383,6 @@ else {
 
         </div>
 
-        <div class=" Test">
-        </div>
-        <div class="output"></div>
-
-
-
         <form id="TheForm" method="post" action="main.php" target="TheWindow">
             <input type="hidden" id="dirName" name="pickedDir" value="undefinied" />
             <input type="hidden" id="txtPath" name="txtPath" value="undefinied" />
@@ -400,22 +400,24 @@ function submitMe() {
     document.getElementById('TheForm').submit();
 }
 
-let files = <?= json_encode($files) ?>;
-let directory = <?= json_encode($path) ?>;
-let lastDir = <?= json_encode($lastDir) ?>;
-let fileText = <?= json_encode($fileText) ?>;
+const files = <?= json_encode($files) ?>;
+const directory = <?= json_encode($path) ?>;
+const lastDir = <?= json_encode($lastDir) ?>;
+const fileText = <?= json_encode($fileText) ?>;
 
 
-let dirs = <?= json_encode($dirs) ?>;
+const dirs = <?= json_encode($dirs) ?>;
 
-let output = document.querySelector('.table');
-let path = document.querySelector('.path');
-let main = document.querySelector('.main');
-let dirName = document.querySelector('#dirName');
-let txtPath = document.querySelector('#txtPath');
-let backButton = document.querySelector('.material-icons');
-let addBtn = document.querySelector('.add-btn');
-let modal = document.getElementById("myModal");
+const output = document.querySelector('.table');
+const path = document.querySelector('.path');
+const main = document.querySelector('.main');
+const dirName = document.querySelector('#dirName');
+const txtPath = document.querySelector('#txtPath');
+const backButton = document.querySelector('.material-icons');
+const addBtn = document.querySelector('.add-btn');
+const modal = document.getElementById("myModal");
+const menuOptions = document.querySelector('.menu-option');
+const rowItems = document.querySelectorAll('.row-item');
 
 
 // Get the <span> element that closes the modal
@@ -489,7 +491,6 @@ let outputDir = dirs.forEach(element => {
     output.innerHTML += item;
 });
 
-const rowItems = document.querySelectorAll('.row-item');
 
 // console.log(rowItems)
 
