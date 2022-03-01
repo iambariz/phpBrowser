@@ -90,6 +90,15 @@ else {
             url(https://example.com/MaterialIcons-Regular.ttf) format('truetype');
     }
 
+    /* Box sizing rules */
+    *,
+    *::before,
+    *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+    }
+
     .tableWrapper {
         position: relative;
     }
@@ -265,7 +274,14 @@ else {
         padding-right: 1rem;
     }
 
-    .menu-option span {}
+    .menu-option>* {
+        padding: 0;
+        margin: 0;
+    }
+
+    h4 {
+        padding: .25rem 0rem;
+    }
     </style>
 </head>
 
@@ -307,9 +323,9 @@ else {
         <div class="createArea">
             <h2>Create area</h2>
             <h4>File name</h4>
-            <input type="text" id="lname" name="lname"><br><br>
+            <input type="text" id="lname" name="lname">
             <h4>Content</h4>
-            <textarea name="newItemName" cols="50" rows="25"></textarea>
+            <textarea name="newItemName" cols="50" rows="10"></textarea>
         </div>
 
         <div class="editArea">
