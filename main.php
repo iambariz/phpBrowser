@@ -282,6 +282,14 @@ else {
     h4 {
         padding: .25rem 0rem;
     }
+
+    .createWrapper {
+        display: none;
+    }
+
+    #newItemText {
+        display: none;
+    }
     </style>
 </head>
 
@@ -324,9 +332,9 @@ else {
             <div class="createWrapper">
                 <h2>Create area</h2>
                 <h4>File name</h4>
-                <input type="text" id="lname" name="lname">
+                <input type="text" id="newFileName" name="newFileName">
                 <h4>Content</h4>
-                <textarea name="newItemName" cols="50" rows="10"></textarea>
+                <textarea name="newItemText" id="newItemText" cols="50" rows="10"></textarea>
                 <button onclick="submitMe()"></button>
             </div>
         </div>
@@ -401,6 +409,8 @@ const addBtn = document.querySelector('.add-btn');
 const modal = document.getElementById("myModal");
 const menuOptions = document.querySelectorAll('.menu-option');
 const createWrapper = document.querySelector('.createWrapper');
+const newFileName = document.querySelector('#newFileName');
+const newItemText = document.querySelector('#newItemText');
 
 
 // Get the <span> element that closes the modal
@@ -519,12 +529,30 @@ function previousDir() {
 }
 
 menuOptions[0].addEventListener('click', function(e) {
-    console.log(this);
+    // 2,4,7    console.log(createWrapper.childNodes);
+    switchTags("text");
+
 })
 
 menuOptions[1].addEventListener('click', function(e) {
-    console.log(this);
+    switchTags("folder");
 })
+
+function switchTags(mode) {
+    createWrapper.style.display = "block";
+    if (mode == "text") {
+        createWrapper.childNodes[1].textContent = "Create document";
+        createWrapper.childNodes[3].textContent = "Document's name";
+        newItemText.style.display = "block";
+    }
+    if (mode == "folder") {
+        createWrapper.childNodes[1].textContent = "Create folder";
+        createWrapper.childNodes[3].textContent = "Folder's name";
+        createWrapper.childNodes[7].style.display = "none";
+    }
+    modal.style.display = "none";
+    console.log(createWrapper.childNodes);
+}
 </script>
 
 
