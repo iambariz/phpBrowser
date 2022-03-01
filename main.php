@@ -321,11 +321,14 @@ else {
         </div>
 
         <div class="createArea">
-            <h2>Create area</h2>
-            <h4>File name</h4>
-            <input type="text" id="lname" name="lname">
-            <h4>Content</h4>
-            <textarea name="newItemName" cols="50" rows="10"></textarea>
+            <div class="createWrapper">
+                <h2>Create area</h2>
+                <h4>File name</h4>
+                <input type="text" id="lname" name="lname">
+                <h4>Content</h4>
+                <textarea name="newItemName" cols="50" rows="10"></textarea>
+                <button onclick="submitMe()"></button>
+            </div>
         </div>
 
         <div class="editArea">
@@ -397,6 +400,7 @@ const backButton = document.querySelector('.material-icons');
 const addBtn = document.querySelector('.add-btn');
 const modal = document.getElementById("myModal");
 const menuOptions = document.querySelectorAll('.menu-option');
+const createWrapper = document.querySelector('.createWrapper');
 
 
 // Get the <span> element that closes the modal
