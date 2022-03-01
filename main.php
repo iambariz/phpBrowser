@@ -290,6 +290,13 @@ else {
     #newItemText {
         display: none;
     }
+
+    #createButton {
+        margin: 1rem 0rem;
+        float: right;
+        display: block;
+        cursor: pointer;
+    }
     </style>
 </head>
 
@@ -335,7 +342,7 @@ else {
                 <input type="text" id="newFileName" name="newFileName">
                 <h4>Content</h4>
                 <textarea name="newItemText" id="newItemText" cols="50" rows="10"></textarea>
-                <button onclick="submitMe()"></button>
+                <button id="createButton" onclick="">Submit</button>
             </div>
         </div>
 
