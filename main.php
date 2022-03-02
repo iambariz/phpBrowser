@@ -428,6 +428,9 @@ const newItemText = document.querySelector('#newItemText');
 const createBtn = document.querySelector('#createButton');
 
 
+let createMode = null;
+
+
 // Get the <span> element that closes the modal
 let span = document.getElementsByClassName("close")[0];
 
@@ -559,22 +562,28 @@ function switchTags(mode) {
         createWrapper.childNodes[1].textContent = "Create document";
         createWrapper.childNodes[3].textContent = "Document's name";
         newItemText.style.display = "block";
+        createMode = "text";
     }
     if (mode == "folder") {
         createWrapper.childNodes[1].textContent = "Create folder";
         createWrapper.childNodes[3].textContent = "Folder's name";
         createWrapper.childNodes[7].style.display = "none";
         newItemText.style.display = "none";
+        createMode = "folder";
     }
     modal.style.display = "none";
 }
 
 createButton.addEventListener('click', function(e) {
     dirName.value = lastDir + "\\";
-    newFile.value = newFileName;
-    if (fileTextInput.value.length < 1) {
-        newItemText = fileTextInput.value = ;
+    newFile.value = newFileName.value;
+    fileTextInput.value = null;
+    if (createMode == "text") {
+        fileTextInput.value = newItemText.value;
     }
+    console.log(newFile.value);
+    console.log(dirName.value);
+    console.log(newItemText.value);
 })
 </script>
 
