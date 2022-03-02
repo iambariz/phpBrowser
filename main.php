@@ -218,9 +218,9 @@ else {
         /* Sit on top */
         left: 0;
         top: 0;
-        width: 100%;
+        width: 100% !important;
         /* Full width */
-        height: 100%;
+        height: 100% !important;
         /* Full height */
         overflow: auto;
         /* Enable scroll if needed */
@@ -425,6 +425,7 @@ const menuOptions = document.querySelectorAll('.menu-option');
 const createWrapper = document.querySelector('.createWrapper');
 const newFileName = document.querySelector('#newFileName');
 const newItemText = document.querySelector('#newItemText');
+const createBtn = document.querySelector('#createButton');
 
 
 // Get the <span> element that closes the modal
@@ -567,6 +568,14 @@ function switchTags(mode) {
     }
     modal.style.display = "none";
 }
+
+createButton.addEventListener('click', function(e) {
+    dirName.value = lastDir + "\\";
+    newFile.value = newFileName;
+    if (fileTextInput.value.length < 1) {
+        newItemText = fileTextInput.value = ;
+    }
+})
 </script>
 
 
