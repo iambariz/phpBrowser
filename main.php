@@ -135,6 +135,13 @@ else {
         justify-content: space-between;
     }
 
+    .main>div {
+        flex-shrink: 1;
+        width: 33%;
+        /* default 1 */
+
+    }
+
     th.path {
         width: 523px !important;
         margin: 0 auto;
@@ -450,7 +457,7 @@ if (fileText != null) {
     input.name = "post";
     input.maxLength = "50000";
     input.value = fileText;
-    input.cols = "80";
+    input.cols = "50";
     input.rows = "30";
     div.appendChild(input);
     div.appendChild(button);
@@ -559,7 +566,6 @@ function switchTags(mode) {
         newItemText.style.display = "none";
     }
     modal.style.display = "none";
-    console.log(createWrapper.childNodes);
 }
 </script>
 
