@@ -292,7 +292,7 @@ else {
     }
 
     #createButton {
-        margin: 1rem 0rem;
+        margin: 2rem 0rem;
         float: right;
         display: block;
         cursor: pointer;
@@ -556,6 +556,7 @@ function switchTags(mode) {
         createWrapper.childNodes[1].textContent = "Create folder";
         createWrapper.childNodes[3].textContent = "Folder's name";
         createWrapper.childNodes[7].style.display = "none";
+        newItemText.style.display = "none";
     }
     modal.style.display = "none";
     console.log(createWrapper.childNodes);
