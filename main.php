@@ -8,7 +8,10 @@ $fileText = null;
 // echo $newFile;
 
 if($newFile != "undefinied"){
-    file_put_contents($newFile, $fileText);
+    $newFileName = $lastDir . $newFile . ".txt";
+    $myfile = fopen($newFileName, "w") or die("Unable to open file!");
+    echo(fwrite($myfile, $fileTextInput));
+    fclose($myfile);
 }
 
 
@@ -581,9 +584,10 @@ createButton.addEventListener('click', function(e) {
     if (createMode == "text") {
         fileTextInput.value = newItemText.value;
     }
-    console.log(newFile.value);
-    console.log(dirName.value);
-    console.log(newItemText.value);
+    submitMe();
+    // console.log(newFile.value);
+    // console.log(dirName.value);
+    // console.log(newItemText.value);
 })
 </script>
 
