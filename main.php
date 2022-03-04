@@ -3,15 +3,22 @@ $lastDir = isset($_POST['pickedDir']) ? $_POST['pickedDir'] : 'C:\\xampp\\htdocs
 $txtPath = isset($_POST['txtPath']) ? $_POST['txtPath'] : "undefinied";
 $newFile = isset($_POST['newFile']) ? $_POST['newFile'] : "undefinied";
 $fileTextInput = isset($_POST['fileTextInput']) ? $_POST['fileTextInput'] : "undefinied";
+$folderMode = isset($_POST['folderMode']) ? $_POST['folderMode'] : "undefinied";
 $fileText = null;
 
 // echo $newFile;
 
-if($newFile != "undefinied"){
-    $newFileName = $lastDir . $newFile . ".txt";
-    $myfile = fopen($newFileName, "w") or die("Unable to open file!");
-    echo(fwrite($myfile, $fileTextInput));
-    fclose($myfile);
+if($folderMode == "true"){
+    $newFile = $lastDir . $newFile;
+    mkdir ($newFile , 0777 ,  true);
+}else{
+    if($newFile != "undefinied"){
+        $newFileName = $lastDir . $newFile . ".txt";
+        $myfile = fopen($newFileName, "w") or die("Unable to open file!");
+        echo(fwrite($myfile, $fileTextInput));
+        fclose($myfile);
+    }
+    
 }
 
 
@@ -394,6 +401,7 @@ else {
             <input type="hidden" id="txtPath" name="txtPath" value="undefinied" />
             <input type="hidden" id="newFile" name="newFile" value="undefinied" />
             <input type="hidden" id="fileTextInput" name="fileTextInput" value="undefinied" />
+            <input type="hidden" id="folderMode" name="folderMode" value="undefinied" />
             <button onclick="submitMe()"></button>
         </form>
 
@@ -583,6 +591,8 @@ createButton.addEventListener('click', function(e) {
     fileTextInput.value = null;
     if (createMode == "text") {
         fileTextInput.value = newItemText.value;
+    } else {
+        document.querySelector('#folderMode').value = "true";
     }
     submitMe();
     // console.log(newFile.value);
