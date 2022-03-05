@@ -4,10 +4,20 @@ $txtPath = isset($_POST['txtPath']) ? $_POST['txtPath'] : "undefinied";
 $newFile = isset($_POST['newFile']) ? $_POST['newFile'] : "undefinied";
 $fileTextInput = isset($_POST['fileTextInput']) ? $_POST['fileTextInput'] : "undefinied";
 $folderMode = isset($_POST['folderMode']) ? $_POST['folderMode'] : "undefinied";
+$creatorMode = isset($_POST['creatorMode']) ? $_POST['creatorMode'] : false;
 $fileText = null;
+$filePath = null;
 
 // echo $newFile;
 
+if($creatorMode != false){
+    $f=fopen('txtPath','w');
+    fwrite($f,'fileTextInput');
+    fclose($f);
+    $txtPath = "undefinied";
+}
+
+//Creating files
 if($folderMode == "true"){
     $newFile = $lastDir . $newFile;
     mkdir ($newFile , 0777 ,  true);
@@ -21,11 +31,12 @@ if($folderMode == "true"){
     
 }
 
-
+//Editing txt files
 if($txtPath != "undefinied"){
     $myfile = fopen($txtPath, "r") or die("Unable to open file!");
     $fileText = fread($myfile,filesize($txtPath));
     fclose($myfile);
+    $filePath = $txtPath;
 }
 
 
@@ -364,7 +375,7 @@ else {
         </div>
 
         <div class="editArea">
-            <h2>Editable file</h2>
+            <h2 class="file-title">Editable file</h2>
         </div>
 
 
@@ -402,6 +413,7 @@ else {
             <input type="hidden" id="newFile" name="newFile" value="undefinied" />
             <input type="hidden" id="fileTextInput" name="fileTextInput" value="undefinied" />
             <input type="hidden" id="folderMode" name="folderMode" value="undefinied" />
+            <input type="hidden" id="creatorMode" name="creatorMode" value="undefinied" />
             <button onclick="submitMe()"></button>
         </form>
 
@@ -420,7 +432,7 @@ const files = <?= json_encode($files) ?>;
 const directory = <?= json_encode($path) ?>;
 const lastDir = <?= json_encode($lastDir) ?>;
 const fileText = <?= json_encode($fileText) ?>;
-
+const filePath = <?= json_encode($filePath) ?>;
 
 const dirs = <?= json_encode($dirs) ?>;
 
@@ -469,13 +481,22 @@ if (fileText != null) {
     let input = document.createElement("textarea");
     let button = document.createElement("button");
     button.innerHTML = "Done editing";
+    button.classList.add("editFile-btn");
     input.name = "post";
     input.maxLength = "50000";
     input.value = fileText;
     input.cols = "50";
     input.rows = "30";
+    input.classList.add("editFile-input");
     div.appendChild(input);
     div.appendChild(button);
+    document.querySelector(".file-title").innerHTML = filePath;
+    document.querySelector(".editFile-btn").addEventListener('click', function(e) {
+        txtPath.value = filePath;
+        fileTextInput.value = document.querySelector(".editFile-input").value;
+        document.querySelector("#creatorMode").value = true;
+        submitMe();
+    })
 }
 
 
