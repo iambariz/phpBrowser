@@ -4,17 +4,21 @@ $txtPath = isset($_POST['txtPath']) ? $_POST['txtPath'] : "undefinied";
 $newFile = isset($_POST['newFile']) ? $_POST['newFile'] : "undefinied";
 $fileTextInput = isset($_POST['fileTextInput']) ? $_POST['fileTextInput'] : "undefinied";
 $folderMode = isset($_POST['folderMode']) ? $_POST['folderMode'] : "undefinied";
-$creatorMode = isset($_POST['creatorMode']) ? $_POST['creatorMode'] : false;
+$creatorMode = isset($_POST['creatorMode']) ? $_POST['creatorMode'] : "false";
 $fileText = null;
 $filePath = null;
 
 // echo $newFile;
 
-if($creatorMode != false){
-    $f=fopen('txtPath','w');
-    fwrite($f,'fileTextInput');
-    fclose($f);
-    $txtPath = "undefinied";
+if($creatorMode != "false"){
+    // $f=fopen('txtPath','w');
+    // fwrite($f,'fileTextInput');
+    // fclose($f);
+    // $txtPath = "undefinied";
+
+    // echo $txtPath;
+
+    //problem is with value forwarding about last dir
 }
 
 //Creating files
@@ -413,7 +417,7 @@ else {
             <input type="hidden" id="newFile" name="newFile" value="undefinied" />
             <input type="hidden" id="fileTextInput" name="fileTextInput" value="undefinied" />
             <input type="hidden" id="folderMode" name="folderMode" value="undefinied" />
-            <input type="hidden" id="creatorMode" name="creatorMode" value="undefinied" />
+            <input type="hidden" id="creatorMode" name="creatorMode" value="false" />
             <button onclick="submitMe()"></button>
         </form>
 
@@ -490,11 +494,12 @@ if (fileText != null) {
     input.classList.add("editFile-input");
     div.appendChild(input);
     div.appendChild(button);
-    document.querySelector(".file-title").innerHTML = filePath;
+    document.querySelector(".file-title").textContent = filePath;
     document.querySelector(".editFile-btn").addEventListener('click', function(e) {
         txtPath.value = filePath;
         fileTextInput.value = document.querySelector(".editFile-input").value;
         document.querySelector("#creatorMode").value = true;
+        dirName.value = lastDir;
         submitMe();
     })
 }
