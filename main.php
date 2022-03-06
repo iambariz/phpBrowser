@@ -11,12 +11,15 @@ $filePath = null;
 // echo $newFile;
 
 if($creatorMode != "false"){
-    // $f=fopen('txtPath','w');
-    // fwrite($f,'fileTextInput');
-    // fclose($f);
-    // $txtPath = "undefinied";
+ $f=fopen($txtPath,'w');
+    fwrite($f,$fileTextInput);
+ fclose($f);
 
-    // echo $txtPath;
+ echo $txtPath;
+ echo $txtPath;
+
+ $txtPath = "undefinied";
+
 
     //problem is with value forwarding about last dir
 }
