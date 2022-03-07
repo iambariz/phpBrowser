@@ -15,8 +15,8 @@ if($creatorMode != "false"){
     fwrite($f,$fileTextInput);
  fclose($f);
 
- echo $txtPath;
- echo $txtPath;
+//  echo $txtPath;
+//  echo $txtPath;
 
  $txtPath = "undefinied";
 
